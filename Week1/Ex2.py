@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 
-#arrays for all of the scores for each student
+#arrays for all of the scores for each student, student grades are verticle
 Homework = np.array([10., 10., 8., 9.5, 3., 9., 0, 6.])   
 Mid_term = np.array([10., 10., 10., 10., 8., 5., 10., 7.]) 
 Final_Project = np.array([9., 10., 10., 6., 10., 6., 8., 9.])
@@ -22,8 +22,8 @@ printFile.write("\n".join(map(lambda x: str(x), list_Grades)))
 #printFile.write("\n".join(str(x) for x in list_Grades))   Another way to do it
 printFile.close()
 
-# now to check how many failed
-k=0
+# Now to check how many failed
+k=0  
 failCount = 0
 while k < Homework.shape[0]:
 	if list_Grades[k] < 6:
@@ -50,8 +50,6 @@ plt.ylabel('Students')
 plt.title(r'Histogram of Student Grades')
 # Tweak spacing to prevent clipping of ylabel
 plt.subplots_adjust(left=0.15)
-
-
 #use this to show plot instead of saving it: plt.show()
 
 #save using a .png, save histogram
