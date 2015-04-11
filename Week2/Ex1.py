@@ -2,6 +2,9 @@ import numpy as np
 
 def trapez(x, y, N, f):
 	
+	#Are we supposed to be able to input a function, f, and N? or are we supposed to just have the two arrays (x,y) input?
+
+
 	# Each slice width
 	h = (y - x) / N
 	
@@ -29,3 +32,7 @@ print('This is the integral: ', q)
 #q = trapez(0.0, 2.0, 10, lambda x: x**4-2*x+1)
 #print('This is the integral: ', q)
 #This gives 4.50 like from the example in the book
+
+
+
+
