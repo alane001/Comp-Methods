@@ -1,33 +1,41 @@
 import numpy as np
 
-# Do we actually import an equation, f, and N instead of just (x,y) like shown in class? Also, is there an easier way to import an equation into the function other than lambda x:(equation), like seen at the bottom of the function?
-
-def trapez(x, y, N, f):
+def trapez(x, y):
 	# Trapezoid equation: I = h [0.5*f(a) + 0.5*f(b) + (sum of all f(a+kh))]
 
-	# Each slice width
-	h = (y - x) / N
-	
-	#Ok I fixed the array part here above, i had float(y-x) which wouldnt allow the array to function
-
-
 	# I is integral, this is first part of integral, 1/2f(a) + 1/2f(b)
-	I = 0.5*f(x) + 0.5*f(y)
-	
+	#f(a) and f(b) correspond to the first(a) and last(b) of the y array
+	#y.shape0 -1 gives the last value in the y array
+	I = 0.5*y[0] + 0.5*y[y.shape[0]-1]
+	print('first I:', I)
+
 	# Runs through k slice of trapezoids, sum from k =1 to N, f(a+kh)
-	for k in range(1, N):
-		I += f(x+k*h)
+	# h = to space betwen any two consective points in the x array
+	#h = (x[x.shape[0]-1] - x[0]) / x.shape[0]
+	h = (x[1] - x[0])
+	print(y)
+	for k in range(1, y.shape[0]-1):
+		#this makes sure that the first and last values of y are not included
+		I += y[k]
 	
 	# Last part to to multiply by outside h
 	I = h * I
 	return I
 
-x = np.array([0., -2])
-y = np.array([2, 2])
-q = trapez(x, y, 10, lambda x: (x**4-2*x+1))
-print('This is the integral: ', q)
+#From Prof. Sales to test function
+def f(x):
+	return x**4 - 2.*x + 1
 
-#THIS DOESNT WORK ABOVE ^ (now this works, ignore****)
+a = 0.
+b = 2.
+N = 10
+
+dx = (b - a) / float(N)
+x = a + np.arange(N).astype('float') * dx + dx/2
+y = f(x)
+integral = trapez(x,y)    #here is where you define your trapez function
+print('integral:', integral)
+print('FINISHED')
 
 #THIS WORKS BELOW
 #q = trapez(0.0, 2.0, 10, lambda x: x**4-2*x+1)
@@ -68,6 +76,6 @@ def simpson(x, y, N, f):
 	I = (I * h) / 3.
 	return I
 
-t = simpson(0.0, 2.0, 10, lambda x: (x**4-2*x+1))
-print('Integral for simpson: ', t)
+#t = simpson(0.0, 2.0, 10, lambda x: (x**4-2*x+1))
+#print('Integral for simpson: ', t)
 
