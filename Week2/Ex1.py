@@ -1,5 +1,7 @@
 import numpy as np
 
+# Do we actually import an equation, f, and N instead of just (x,y) like shown in class? Also, is there an easier way to import an equation into the function other than lambda x:(equation), like seen at the bottom of the function?
+
 def trapez(x, y, N, f):
 	# Trapezoid equation: I = h [0.5*f(a) + 0.5*f(b) + (sum of all f(a+kh))]
 
