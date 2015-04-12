@@ -2,6 +2,9 @@ import Ex1 as Ex1
 import numpy as np
 import matplotlib.pyplot as plt
 
+#Could you look at this Ex as well. Is it outputting the correct shape of graph? I wasnt sure if the equation would should be inputting is x = vt + x(initial). Since there is no gravity in the x direction. 
+
+
 #Loading given txt into an array
 a = np.loadtxt("velocities.txt", float)
 
@@ -19,7 +22,7 @@ while i < a.shape[0] - 1:
 #converting list to array for plotting and saving
 arrayPos = np.array(listVel)
 #saves as txt file
-np.savetxt('List of positions.txt', arrayPos, newline = '\r\n')
+np.savetxt('List of Positions Trapez.txt', arrayPos, newline = '\r\n')
 
 #Plotting two graphs on same output, one of the original array of velocity vs time and the other of position vs. time
 ax = plt.subplot(2,1,1)
