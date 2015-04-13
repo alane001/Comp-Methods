@@ -185,7 +185,7 @@ np.savetxt('Total Distance Traveled Simpson.txt', totalDistanceSimp)
 
 #This sets up the data to plot
 graphVel = np.array([0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10])
-graphTime = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+graphTime = np.array([0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
 
 ax = plt.subplot(2,1,1)
 plt.plot(graphTime, graphVel, color='red')
