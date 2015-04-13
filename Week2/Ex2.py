@@ -184,11 +184,11 @@ np.savetxt('Total Distance Traveled Simpson.txt', totalDistanceSimp)
 #Plotting two graphs on same output, one of the original array of velocity vs time and the other of position vs. time
 
 #This sets up the data to plot
-graphVel = np.array([0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10])
+graphPos = np.array([0, pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10])
 graphTime = np.array([0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100])
 
 ax = plt.subplot(2,1,1)
-plt.plot(graphTime, graphVel, color='red')
+plt.plot(graphTime, graphPos, 'o-', color='red')
 plt.xlabel('Time (s)')
 plt.ylabel('Position (m)')
 plt.suptitle('Time Versus Position and Velocity')
