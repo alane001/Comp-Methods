@@ -39,8 +39,11 @@ print("My Function's Integral Trap:", integralTrap, "\nMy Function's Integral Si
 
 #Now can do numpy's intrinsic trapz's and simpson's functions
 #these functions go (y, x) instead of x,y in my function
-integralTrapNp = np.trapz(yValue, xValue)
-print('Integral Numpy Trap:', integralTrapNp)
+
+#If want to use numpy instead of scipy, use this
+#integralTrapNp = np.trapz(yValue, xValue)
+#print('Integral Numpy Trap:', integralTrapNp)
+
 integralTrapSci = scipy.trapz(yValue, xValue)
 print('Integral Scipy Trap:', integralTrapSci)
 #This was causing problems
@@ -49,7 +52,7 @@ print('Integral Scipy Simpson:', integralSimpSci)
 
 
 
-#Now to compute the error by starting with N = 10
+#Now to compute the error later, by starting with N = 10
 
 #This is the integrals limits of integration
 a2 = 0.
@@ -79,16 +82,25 @@ yValue2 = f(xValue2)
 integralTrap2 = Ex1.trapez(xValue2, yValue2)
 integralSimp2 = Ex1.simpson(xValue2, yValue2)
 
-#These are the I2 in the formula for error (E = 1/3(I2-I1))
-print("\nSecond integral trap:", integralTrap2, "\nSecond integral simp:", integralSimp2)
+#These are the I1 in the formula for error (E = 1/3(I2-I1))
+
+#if want to print results from second integrals
+#print("\nSecond integral trap:", integralTrap2, "\nSecond integral simp:", integralSimp2)
 
 #Now we can use the result from part one and the part above to calculate the error in the trap and simp rules, I2(N=20) = integralTrap, I1(N=10) = integralTrap2
-#All of these errors for my functions
-#N1 is from the second integrations because it is the smaller N=10
-errorTrap = (1./3.)*(integralTrap - integralTrap2)
-errorSimp = (1./3.)*(integralSimp - integralSimp2)
-print("Trapezoidal Error:", errorTrap, "\nSimpson Error:", errorSimp)
+#All of these errors for my Ex1 functions
+#N1 is from the second integrations because it is the smaller, N=10
+
+# trap error 1/3 (I2-I1)
+errorTrap = abs((1./3.)*(integralTrap - integralTrap2))
+# simp error 1/15(I2-I1)
+errorSimp = abs((1./15.)*(integralSimp - integralSimp2))
+
+#To print errors
+#print("Trapezoidal Error:", errorTrap, "\nSimpson Error:", errorSimp)
 
 
 
-
+#The calulated by hand constant
+calcHand = 4.4
+print("\nThe calculated, true result by hand is", calcHand, "and the computer calculated results", integralTrap, "+/-", errorTrap, "trapezoidal rule, and", integralSimp, "+/-", errorSimp, "simpson's rule")
