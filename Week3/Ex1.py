@@ -48,7 +48,7 @@ y2 = side / 2
 sqPlane = np.zeros(shape=(points, points)).astype('float')
 ePlane = np.zeros(shape=(points, points)).astype('float')
 
-h=1.
+
 for i in range(points):
 	y = spacing * i
 	for j in range(points):
@@ -56,16 +56,19 @@ for i in range(points):
 		r1 = sqrt((x - x1)**2 + (y - y1)**2)
 		r2 = sqrt((x - x2)**2 + (y - y2)**2)
 		if r1 != 0 and r2 != 0:
-			sqPlane[i, j] = abs(phi(q1, r1)) + abs(phi (q2, r2))
-			
-					
+			sqPlane[i, j] = phi(q1, r1) + phi (q2, r2)
+			ePlane[i, j] = (phi(q1, x1) - phi(q1, x)) / (x1 - x)
+			ePlane[i, j] += (phi(q1, y1) - phi(q1, y)) / (y1 -y)
+
+
 ax = plt.subplot(1,1,1)
 imshow(sqPlane, origin = "lower", extent = [0, side, 0, side])
 ax.set_xlabel('X Postion[cm]')
 ax.set_ylabel('Y Postion[cm]')
 plt.suptitle('Electrical Potential Distribution Due to Two Charges')
-#gray()
+gray()
 show()
+
 
 #Electric Field = -gradient(phi)
 #eField = np.gradient()
