@@ -66,14 +66,14 @@ grad = np.gradient(-sqPlane)
 #Since the gradient is d/dx + d/dy then just add them together
 #The abs gives that magnitude of the electric field
 #grad[0] gives y and grad[1] gives x
-gradXY = grad[0] + grad[1]
+eField = abs(grad[0] + grad[1])
 
 #This plots the E field as a density plot
 ax = plt.subplot(1,1,1)
-imshow(gradXY, origin = "lower", extent = [0, side, 0, side])
+imshow(eField, origin = "lower", extent = [0, side, 0, side])
 ax.set_xlabel('X Postion[cm]')
 ax.set_ylabel('Y Postion[cm]')
-plt.suptitle('Electrical Field Distribution Due to Two Charges')
+plt.suptitle('Electric Field Distribution Due to Two Charges')
 #gray()
 show()
 
