@@ -16,15 +16,6 @@ epsilonKnot =  8.854187817 #units of C2/(N m2)
 def phi(q, r):
 	return q / (4. * pi * epsilonKnot * r)
 
-
-def partx(func, x, y, h):
-	dx = (func(x + h / 2., y) - func(x - h / 2., y)) / h
-	return dx
-
-def party(func, x, y, h):
-	dy = (func(x, y + h / 2.) - func(x, y - h / 2.)) / h
-	return dy
-
 #Charges used
 q1 = 1. #unit of C
 q2 = -1. #unit of C
@@ -46,7 +37,6 @@ y2 = side / 2
 
 #Need to make a matrix of a 1m x 1m grid, broken into 1 cm increments
 sqPlane = np.zeros(shape=(points, points)).astype('float')
-ePlane = np.zeros(shape=(points, points)).astype('float')
 
 
 for i in range(points):
@@ -57,23 +47,34 @@ for i in range(points):
 		r2 = sqrt((x - x2)**2 + (y - y2)**2)
 		if r1 != 0 and r2 != 0:
 			sqPlane[i, j] = phi(q1, r1) + phi (q2, r2)
-			ePlane[i, j] = (phi(q1, x1) - phi(q1, x)) / (x1 - x)
-			ePlane[i, j] += (phi(q1, y1) - phi(q1, y)) / (y1 -y)
+#This fills up the plane for the potential
 
-
+#This plots the potential in an image that shows its distribution
 ax = plt.subplot(1,1,1)
 imshow(sqPlane, origin = "lower", extent = [0, side, 0, side])
 ax.set_xlabel('X Postion[cm]')
 ax.set_ylabel('Y Postion[cm]')
 plt.suptitle('Electrical Potential Distribution Due to Two Charges')
-gray()
+#gray()
 show()
 
+#I couldn't figure out how to do it by partial derivatives, so I just used the intrensic numpy function that does gradient
+#This gives E = -gradient(voltage), the negative of sqplane makes it negative
+grad = np.gradient(-sqPlane)
+#The gradient gives two seperate arrays, with one for x and one for y
 
-#Electric Field = -gradient(phi)
-#eField = np.gradient()
-#print(eField)
+#Since the gradient is d/dx + d/dy then just add them together
+#The abs gives that magnitude of the electric field
+#grad[0] gives y and grad[1] gives x
+gradXY = grad[0] + grad[1]
 
-#Partial derivatives
+#This plots the E field as a density plot
+ax = plt.subplot(1,1,1)
+imshow(gradXY, origin = "lower", extent = [0, side, 0, side])
+ax.set_xlabel('X Postion[cm]')
+ax.set_ylabel('Y Postion[cm]')
+plt.suptitle('Electrical Field Distribution Due to Two Charges')
+#gray()
+show()
 
-#ePlane[i, j] = abs(partx(lambda q1,r1:phi(q1, r1), x, y, h) + party(phi(q1, r1), x, y, h) + partx(phi(q2, r2), x, y, h) + party(phi(q2, r2), x, y, h))
+#Shows off diaganol efield because when adding x and y causes a diaganol vector
