@@ -38,103 +38,19 @@ def P_prime(x):
 
 #Newtons Method: xnew = xguess - (f(xguess) / f'(xguess))
 
-#This is the guess which can be seen from graph, just choose close to estimate
-x_old = 0.04
+def newtMeth(x_old):
+	#Error to force into while loop
+	eps = 1.
 
-#Error to force into while loop
-eps = 1.
+	while eps > 1.e-10:
+		x_new = x_old - (P(x_old) / P_prime(x_old))
+		#print('x new =', x_new)
+		#See p. 271 for this formula
+		eps = abs(x_old - x_new)
+		x_old = x_new
+	return x_new
 
-print('\n')
-while eps > 1.e-10:
-	x_new = x_old - (P(x_old) / P_prime(x_old))
-	#print('x new =', x_new)
-	#See p. 271 for this formula
-	eps = abs(x_old - x_new)
-	x_old = x_new
+#Now can just plug in estimates from the graph into the function
+print('First Root:', newtMeth(0.03), '\nSecond Root:', newtMeth(0.17), '\nThird Root:', newtMeth(0.39), '\nFourth Root:', newtMeth(0.62), '\nFifth Root:', newtMeth(0.84), '\nSixth Root:', newtMeth(0.97))
 
-print('First Root:', x_new)
 
-###################################
-print('\n')
-#This is the guess which can be seen from graph, just choose close to estimate
-x_old = 0.17
-
-#Error to force into while loop
-eps = 1.
-
-while eps > 1.e-10:
-	x_new = x_old - (P(x_old) / P_prime(x_old))
-	#print('x new =', x_new)
-	#See p. 271 for this formula
-	eps = abs(x_old - x_new)
-	x_old = x_new
-
-print('Second Root:', x_new)
-########################################
-
-print('\n')
-#This is the guess which can be seen from graph, just choose close to estimate
-x_old = 0.39
-
-#Error to force into while loop
-eps = 1.
-
-while eps > 1.e-10:
-	x_new = x_old - (P(x_old) / P_prime(x_old))
-	#print('x new =', x_new)
-	#See p. 271 for this formula
-	eps = abs(x_old - x_new)
-	x_old = x_new
-
-print('Third Root:', x_new)
-##########################################
-
-print('\n')
-#This is the guess which can be seen from graph, just choose close to estimate
-x_old = 0.62
-
-#Error to force into while loop
-eps = 1.
-
-while eps > 1.e-10:
-	x_new = x_old - (P(x_old) / P_prime(x_old))
-	#print('x new =', x_new)
-	#See p. 271 for this formula
-	eps = abs(x_old - x_new)
-	x_old = x_new
-
-print('Fourth Root:', x_new)
-################################################
-
-print('\n')
-#This is the guess which can be seen from graph, just choose close to estimate
-x_old = 0.84
-
-#Error to force into while loop
-eps = 1.
-
-while eps > 1.e-10:
-	x_new = x_old - (P(x_old) / P_prime(x_old))
-	#print('x new =', x_new)
-	#See p. 271 for this formula
-	eps = abs(x_old - x_new)
-	x_old = x_new
-
-print('Fifth Root:', x_new)
-############################################
-
-print('\n')
-#This is the guess which can be seen from graph, just choose close to estimate
-x_old = 0.97
-
-#Error to force into while loop
-eps = 1.
-
-while eps > 1.e-10:
-	x_new = x_old - (P(x_old) / P_prime(x_old))
-	#print('x new =', x_new)
-	#See p. 271 for this formula
-	eps = abs(x_old - x_new)
-	x_old = x_new
-
-print('Sixth Root:', x_new)
