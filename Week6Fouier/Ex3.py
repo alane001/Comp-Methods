@@ -51,6 +51,7 @@ def dft(y):
 coeff = dft(sunSpotNum)
 
 #This will plot a verticle line where needed to estimate other large frequency, 'k' is black
+
 #plt.axvline(x = 24, color = 'k')
 
 #Looks like the other main frequency is at k = 24
@@ -58,7 +59,7 @@ coeff = dft(sunSpotNum)
 #This plots magnitude of Fouier Coeff
 plt.plot(np.arange(len(coeff)), np.abs(coeff)**2)
 plt.xlabel('Frequency (k)')
-plt.ylabel('Absolute Val of Fourier Coeff')
+plt.ylabel('Absolute Value of Fourier Coeff Squared (|ck|^2)')
 plt.title('Fourier Coefficients vs. Frequency for Sunspot Cycle')
 #This is to better see the high counts near 1, without, it blends
 plt.xlim(-1, 100)
@@ -70,12 +71,12 @@ plt.show()
 #PART C
 
 #The only other non-zero k term is at k = 24 1/month
-print("\nOther non-zero frequency at k = 24 as seen on the graph")
+print("\nOther non-zero frequency is at k = 24, as seen on the graph")
 
 #To find period we need T = 1 / freq = 1/k but that would give 0.041 months which does not correspond to the answer in part A. Any value of k would give a low number so I am assuming we must multiply to somthing else
 
 #To find the period of this k just multiply it by 2 pi
-print("\nThe period of this sine wave is", 2. * np.pi * 24., "which is very close to the estimate 135 months, as predicted by part a.")
+print("\nThe period of this sine wave is", 2. * np.pi * 24., "which is close to the estimated 135 months, as predicted by part a.")
 
 
 
