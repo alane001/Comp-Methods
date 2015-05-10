@@ -31,7 +31,8 @@ square = signal.square(2. * np. pi * t)
 coeff = dft(square)
 
 #This plots what we require
-plt.plot(np.arange(len(coeff)), np.abs(coeff)**2)
+#Can square the values to see less flucuation
+plt.plot(np.arange(len(coeff)), np.abs(coeff))#**2)
 plt.xlabel('Frequency (k)')
 plt.ylabel('Absolute Val of Fourier Coeff')
 plt.title('Fourier Coefficients vs. Frequency of Square Wave (1 Cycle)')
@@ -48,11 +49,11 @@ plt.show()
 sawtooth = signal.sawtooth(2. * np.pi * t)
 coeffsaw = dft(sawtooth)
 #plots number of freq vs abs value of the coefficients or amplitudes
-plt.plot(np.arange(len(coeffsaw)), np.abs(coeffsaw)**2)
+plt.plot(np.arange(len(coeffsaw)), np.abs(coeffsaw))#**2)
 plt.xlabel('Frequency (k)')
 plt.ylabel('Absolute Val of Fourier Coeff')
 plt.title('Fourier Coefficients vs. Frequency of Sawtooth Wave (1 Cycle)')
-plt.xlim(-2, 200)
+plt.xlim(-2, 150)
 plt.savefig('Plot Amplitude Sawtooth Wave.png', format='png')
 plt.show()
 
@@ -64,7 +65,7 @@ N = 1000.   #basically number of t points as well but needed this here
 y = np.sin((np.pi * t) / N) * np.sin((20. * np.pi * t) / N)
 
 coeffsin = dft(y)
-plt.plot(np.arange(len(coeffsin)), np.abs(coeffsin)**2)
+plt.plot(np.arange(len(coeffsin)), np.abs(coeffsin))#**2)
 plt.xlabel('Frequency (k)')
 plt.ylabel('Absolute Val of Fourier Coeff')
 plt.title('Fourier Coefficients vs. Frequency of Modulated Sine Wave')
