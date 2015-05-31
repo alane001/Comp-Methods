@@ -27,7 +27,10 @@ def f(r):
 
 #Time, dont use too high of a value for b or else causes odd orbit paths
 a = 0.0 #intial time
-b = 3e10 #final time
+b = 3.1e9 #final time
+
+#This b time gives almost exactly 2 orbital periods
+
 
 #Make sure to have N large enough, without it causes wierd things to happen
 #How many bins/steps, the more steps the smoother the curve in the graph
@@ -57,11 +60,35 @@ for i in range(N):
 	k4 = h*f(r+k3)
 	r += (k1+2*k2+2*k3+k4)/6
 	
-#print(xpoints)
-#print(np.min(xpoints), np.max(xpoints), np.min(ypoints), np.max(ypoints))
+
+plt.figure(1)
 plt.plot(xpoints, ypoints)
 plt.xlabel("X Position (m)")
 plt.ylabel("Y Position (m)")
 plt.title("Position of the Comet")
 plt.savefig("Position of the Comet.png", format = "png")
-#plt.show()
+plt.show()
+
+#array of zeros to get y =0 line to plot
+zero = np.zeros(N)
+
+plt.subplot(2,1,1)
+
+#plots a y = 0 line
+plt.plot(tpoints, zero, 'black')
+
+plt.plot(tpoints, xpoints)
+plt.xlabel("Time (s)")
+plt.ylabel("X Position (m)")
+plt.title("X Position of the Comet vs Time")
+plt.tight_layout() #makes the graph fit in frame without overlapping
+
+plt.subplot(2,1,2)
+plt.plot(tpoints, zero, 'black')
+plt.plot(tpoints, ypoints)
+plt.xlabel("Time (s)")
+plt.ylabel("Y Position (m)")
+plt.title("Y Position of the Comet vs Time")
+plt.tight_layout()
+plt.savefig("X and Y Position of the Comet vs Time.png", format = "png")
+plt.show()
