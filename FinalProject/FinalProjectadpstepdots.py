@@ -127,7 +127,7 @@ while tnow < tend:
 			i = nstep
 			xpoints[i] = r1_1h[0]
 			ypoints[i] = r1_1h[2]
-			tpoints[i] = h
+			tpoints[i] = tnow
 			h_keep[i] = h
 
 			#now use new h

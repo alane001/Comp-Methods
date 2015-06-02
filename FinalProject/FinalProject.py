@@ -4,6 +4,8 @@ import matplotlib.pylab as plt
 
 ### Cometary Orbits ###
 
+#Part B)
+
 #Constants
 G = 6.6738e-11 # m**3 kg**-1 s**-2         Gravitational Constant
 M = 1.9891e30 # kg      Mass of the Sun
@@ -26,6 +28,7 @@ def f(r):
 	return np.array([fx,fvx,fy,fvy],float)
 
 #Time, dont use too high of a value for b or else causes odd orbit paths
+#For two orbits we use 3.1e9
 a = 0.0 #intial time
 b = 3.1e9 #final time
 

@@ -4,6 +4,8 @@ import matplotlib.pylab as plt
 
 ### Cometary Orbits with varying step size ###
 
+#Part C)
+
 #Constants
 G = 6.6738e-11 # m**3 kg**-1 s**-2         Gravitational Constant
 M = 1.9891e30 # kg      Mass of the Sun
@@ -57,10 +59,10 @@ nstep = 0 #allows for counting of steps
 h = 20000000.  #initial guess of h
 
 while tnow < tend:
-	print ('----- starting new step ----')
-	print ('time=,',tnow)
-	print ('step=, h=',(nstep,h))
-	print ('r=',r)
+	#print ('----- starting new step ----')
+	#print ('time=,',tnow)
+	#print ('step=, h=',(nstep,h))
+	#print ('r=',r)
 
 	redo = 0
 	
@@ -100,16 +102,14 @@ while tnow < tend:
 			rho = (30. * h * delta) / var
 		else:
 			rho = 16.   #so new h = 2 *h
-		#print 'rho = ',rho
-
-
+		
 		#Now for rho to see if less than or greater than 1 
 
 		#rho = (30. * h * delta) / abs(x1 - x2)
 
 	
 		if rho >= 1:
-			#if larger than 2 keep original x1
+			#if larger than 2*h keep 2*h not larger
 			newh = h * (rho)**(1./4.)
 			
 			if newh > 2.*h:
@@ -126,7 +126,7 @@ while tnow < tend:
 			i = nstep
 			xpoints[i] = r1_1h[0]
 			ypoints[i] = r1_1h[2]
-			tpoints[i] = h
+			tpoints[i] = tnow
 			h_keep[i] = h
 
 			#now use new h
@@ -141,7 +141,7 @@ while tnow < tend:
 			h = newh
 			#makes the loop repeat
 			redo = 0
-			print( 'FAILED, RE-DOING STEP')
+			#print( 'FAILED, RE-DOING STEP')
 
 	
 
@@ -166,12 +166,16 @@ plt.show()
 dist = np.sqrt(xpoints**2 + ypoints**2)
 plt.figure(2)
 plt.plot(tpoints,dist,'--',linewidth=3)
-plt.xlabel('time [sec]')
+plt.title("Orbit as a Function of Time")
+plt.xlabel('Time [sec]')
 plt.ylabel('Distance [m]')
 
 # plot step size
 plt.figure(3)
 ax1 = plt.subplot(111)
-plt.plot(tpoints,h_keep,'-',linewidth=3)
+plt.plot(tpoints,h_keep,'-',linewidth=2)
 ax1.set_yscale('log')
+plt.title("Step size vs Time")
+plt.xlabel("Time [sec]")
+plt.ylabel("Log of Step Size")
 plt.show()
