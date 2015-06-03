@@ -104,4 +104,4 @@ plt.savefig("X and Y Position of the Comet vs Time Part B.png", format = "png")
 plt.show()
 
 
-#The same step size causes the program to run slow compared to the adaptive step method. I used a h value of around 3100 secs, if N went smaller than that number would be larger and cause problems.
+#The same step size causes the program to run slow compared to the adaptive step method. I used a h value of around 3100 secs, if N went smaller then that number would be larger and cause problems.

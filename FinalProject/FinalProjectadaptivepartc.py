@@ -180,3 +180,6 @@ plt.ylabel("Log of Step Size")
 plt.tight_layout()
 plt.savefig("Plot of Orbit and Step Size as Function of Time Part C.png", format ="png")
 plt.show()
+
+
+#This version of the program is much, much faster than part b. The step sizes are larger where the comet is far away from the sun and small where the comet is moving fast near the sun. The accuracy seems to be much better now that the step sizes can be changed throughout the program.
